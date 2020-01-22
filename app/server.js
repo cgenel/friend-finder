@@ -4,18 +4,17 @@ var bodyParser = require("body-parser");
 
 var PORT = process.env.PORT || 8080;
 
-var jsonParser = bodyParser.json()
-
-var urlencodedParser = bodyParser.urlencoded({extended: false})
+// body parser makes it easy for back and front end to talk to each other
+app.use(bodyParser.urlencoded({extended: true}));
 
 // parsing custom json types as json
-app.use(bodyParser.json({type: "application/*+json"}))
+app.use(bodyParser.json({type: "application/*+json"}));
 
 // parsing into a buffer
-app.use(bodyParser.raw({type: "application/vnd.custom-type"}))
+app.use(bodyParser.raw({type: "application/vnd.custom-type"}));
 
 // parsing html into a string
-app.use(bodyParser.text({type: "text/html"}))
+app.use(bodyParser.text({type: "text/html"}));
 
 // require path to Routes
 require("../app/routing/htmlRoutes.js")(app);

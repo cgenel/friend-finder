@@ -45,12 +45,10 @@ module.exports = function(app) {
         }
       }
     }
-  });
+    // save the user data into the database always AFTER the check
+    friends.push(userData);
 
-  // save the user data into the database always AFTER the check
-  friends.push(userData);
-
-  // return json with the bestMatch
-  res.json(bestMatch);
-
-};
+    // return json with the bestMatch to the front end
+    res.json(bestMatch);
+    });
+}
