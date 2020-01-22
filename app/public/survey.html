@@ -163,5 +163,32 @@
 
 </div>
 
+<!-- javascript here -->
+  <script type="text/javascript">
+
+    // when user clicks "Submit" validate the form
+    $("#submit").on("click", function() {
+      
+      function validateForm() {
+        var isValid = true;
+        // return false if user doesnt input name an url
+        $(".form-control").each(function(){ 
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        // return false if any questions are not answered
+        $(".chosen-select").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+    })
+
+  </script>
 </body>
 </html>
