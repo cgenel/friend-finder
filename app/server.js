@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // body parser makes it easy for back and front end to talk to each other
 app.use(bodyParser.urlencoded({extended: true}));
@@ -17,8 +17,8 @@ app.use(bodyParser.raw({type: 'application/vnd.custom-type'}));
 app.use(bodyParser.text({type: 'text/html'}));
 
 // require path to Routes
-require("../app/routing/htmlRoutes.js")(app);
-require("../app/routing/apiRoutes.js")(app);
+require("./routing/htmlRoutes.js")(app);
+require("./routing/apiRoutes.js")(app);
 
 app.listen(PORT, function() {
   console.log("app is listening on PORT: " + PORT);
