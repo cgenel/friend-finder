@@ -13,8 +13,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/385ae5645a.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/chosen.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen.jquery.min.js"></script> 
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/chosen.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen.jquery.min.js"></script>  -->
 </head>
 <body>
   
@@ -157,10 +157,31 @@
   <!-- footer linking to github repo and api's -->
   <footer class="footer">
     <div class ="container">
-      <p<><a href="">API Friends List</a> | <a href="">Github Repo</a> </p>
+      <p<><a href="/api/friends">API Friends List</a> | <a href="https://github.com/cgenel/friend-finder">Github Repo</a> </p>
     </div>
   </footer>
 
+</div>
+
+<!-- modal for best match -->
+<div id="resultsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Best Match</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 id ="matchName"><h2>
+        <img id="matchImg" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- javascript here -->
@@ -205,6 +226,14 @@
             $("#q10").val(),
           ]
         };
+
+        // grab the website URL
+        var currentURL = window.location.origin;
+
+        // AJAX to post the data to the friends API
+        $.post(currentURL + "/api/friends", userData, function(data) {
+          alert("working")
+        });
       }
     })
 
