@@ -37,7 +37,7 @@
   <!-- questions 1-10 -->
   <h3><strong>Question 1</strong></h3>
   <h4>In-N-Out is the superior fast food burger.</h4>
-  <select data-placeholder="" class="chosen-select" id="question1">
+  <select data-placeholder="" class="chosen-select" id="q1">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -48,7 +48,7 @@
 
   <h3><strong>Question 2</strong></h3>
   <h4>The ending to Game of Thrones was terrible.</h4>
-  <select data-placeholder="" class="chosen-select" id="question2">
+  <select data-placeholder="" class="chosen-select" id="q2">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -59,7 +59,7 @@
 
   <h3><strong>Question 3</strong></h3>
   <h4>Reading a book in hand is better than listening to an audiobook.</h4>
-  <select data-placeholder="" class="chosen-select" id="question3">
+  <select data-placeholder="" class="chosen-select" id="q3">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -70,7 +70,7 @@
 
   <h3><strong>Question 4</strong></h3>
   <h4>I love waiting in lines.</h4>
-  <select data-placeholder="" class="chosen-select" id="question4">
+  <select data-placeholder="" class="chosen-select" id="q4">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -81,7 +81,7 @@
 
   <h3><strong>Question 5</strong></h3>
   <h4>I enjoy playing video games.</h4>
-  <select data-placeholder="" class="chosen-select" id="question5">
+  <select data-placeholder="" class="chosen-select" id="q5">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -92,7 +92,7 @@
 
   <h3><strong>Question 6</strong></h3>
   <h4>A steak is best cooked medium rare.</h4>
-  <select data-placeholder="" class="chosen-select" id="question6">
+  <select data-placeholder="" class="chosen-select" id="q6">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -103,7 +103,7 @@
 
   <h3><strong>Question 7</strong></h3>
   <h4>The 49er's will win the superbowl.</h4>
-  <select data-placeholder="" class="chosen-select" id="question7">
+  <select data-placeholder="" class="chosen-select" id="q7">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -114,7 +114,7 @@
 
   <h3><strong>Question 8</strong></h3>
   <h4>Pineapples on pizza is delicious.</h4>
-  <select data-placeholder="" class="chosen-select" id="question8">
+  <select data-placeholder="" class="chosen-select" id="q8">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -125,7 +125,7 @@
 
   <h3><strong>Question 9</strong></h3>
   <h4>Yoga and Medittion are good for stress and anxiety.</h4>
-  <select data-placeholder="" class="chosen-select" id="question9">
+  <select data-placeholder="" class="chosen-select" id="q9">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -136,7 +136,7 @@
 
   <h3><strong>Question 10</strong></h3>
   <h4>I enjoy going to Vegas at least once a year.</h4>
-  <select data-placeholder="" class="chosen-select" id="question10">
+  <select data-placeholder="" class="chosen-select" id="q10">
     <option value=""></option>
     <option value="1">1(Strongly Disagree)</option>
     <option value="2">2</option>
@@ -150,7 +150,7 @@
 
     <!-- button large -->
     <div class="jumbInfo">
-      <a href=""><button type="button" class="btn btn-primary btn-lg btn-block">Submit</button><h4></button></a>
+      <a href=""><button type="button" class="btn btn-primary btn-lg btn-block" id ="submit">Submit</button><h4></button></a>
     </div>    
 
 
@@ -164,7 +164,7 @@
 </div>
 
 <!-- modal for best match -->
-<div id="resultsModal" tabindex="-1" role="dialog">
+<div id="resultsModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -175,7 +175,7 @@
       </div>
       <div class="modal-body">
         <h2 id ="matchName"><h2>
-        <img id="matchImg" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+        <img id="matchImg" src="" alt="">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -223,19 +223,26 @@
             $("#q7").val(),
             $("#q8").val(),
             $("#q9").val(),
-            $("#q10").val(),
+            $("#10").val(),
           ]
         };
 
         // grab the website URL
         var currentURL = window.location.origin;
 
-        // AJAX to post the data to the friends API
+        // AJAX post the data to the friends API
         $.post(currentURL + "/api/friends", userData, function(data) {
-          alert("working")
+
+          $("#matchName").text(data.name);
+          $("#matchImg").attr("src", data.photo);
+          $("#resultsModal").modal("toggle");
         });
       }
-    })
+      else {
+        alert("Fill out all fields before submitting!");
+      }
+      return false;
+    });
 
   </script>
 </body>

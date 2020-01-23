@@ -1,4 +1,4 @@
-var friends = require("../data/friends");
+var friends = require("../data/friends.js");
 
 // API GET Requests
 // Below code handles when users "visit" a page.
@@ -10,7 +10,7 @@ module.exports = function(app) {
 
   // taking the user's results from the survey using POST
   app.post("/api/friends", function(req, res){
-    var bestFriend = {
+    var bestMatch = {
       name: "",
       photo: "",
       friendDifference: 1000
@@ -33,10 +33,10 @@ module.exports = function(app) {
       // loop through all the scores [j]
       for (var j = 0; j < friends[i].scores[j]; i++) {
         // calculate the total difference between the scores and add them together
-        totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].acores[j]));
+        totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
         
         // calculate the sum between the differences the find the best match
-        if (totalDifference <= bestFriend.friendDifference) {
+        if (totalDifference <= bestMatch.friendDifference) {
 
           // best match is the new friend!
           bestMatch.name = friends[i].name;
@@ -44,11 +44,11 @@ module.exports = function(app) {
           bestMatch.friendDifference = totalDifference;
         }
       }
-    }
+    } 
     // save the user data into the database always AFTER the check
     friends.push(userData);
 
     // return json with the bestMatch to the front end
     res.json(bestMatch);
-    });
+  });
 }

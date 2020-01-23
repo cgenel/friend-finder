@@ -2,7 +2,7 @@ var friends = [
   
   {
     "name":"Ahmed",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo":"",
     "scores":[
         5,
         1,
@@ -19,7 +19,7 @@ var friends = [
 
   {
     "name":"Elon",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo":"",
     "scores":[
         1,
         5,
@@ -36,7 +36,7 @@ var friends = [
 
   {
     "name":"Geralt",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo":"",
     "scores":[
         3,
         2,

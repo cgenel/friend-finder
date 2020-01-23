@@ -8,13 +8,13 @@ var PORT = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({extended: true}));
 
 // parsing custom json types as json
-app.use(bodyParser.json({type: "application/*+json"}));
+app.use(bodyParser.json({type: 'application/*+json'}));
 
 // parsing into a buffer
-app.use(bodyParser.raw({type: "application/vnd.custom-type"}));
+app.use(bodyParser.raw({type: 'application/vnd.custom-type'}));
 
 // parsing html into a string
-app.use(bodyParser.text({type: "text/html"}));
+app.use(bodyParser.text({type: 'text/html'}));
 
 // require path to Routes
 require("../app/routing/htmlRoutes.js")(app);
