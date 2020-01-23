@@ -25,7 +25,7 @@ and the answers will be used to determine their best match. Once a match is made
 To-do- list:
 * I am not able to get the api working properly,
 * because i am not able to get it working i cannot deploy it  to heroku i have tried
-* need to get the paths working so that I can deploy to heroku and include the heroke link in my portfolio
+* need to get the paths working so that I can deploy to heroku and include the heroku link in my portfolio
 
 ## Status
 Project is: _in progress_
