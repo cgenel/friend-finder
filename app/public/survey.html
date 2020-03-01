@@ -125,7 +125,7 @@
     </select>
 
     <h3><strong>Question 9</strong></h3>
-    <h4>Yoga and Medittion are good for stress and anxiety.</h4>
+    <h4>Yoga and Meditation are good for stress and anxiety.</h4>
     <select data-placeholder="" class="chosen-select" id="q9">
       <option value=""></option>
       <option value="1">1(Strongly Disagree)</option>
@@ -136,7 +136,7 @@
     </select>
 
     <h3><strong>Question 10</strong></h3>
-    <h4>I enjoy going to Vegas at least once a year.</h4>
+    <h4>I enjoy going to Vegas.</h4>
     <select data-placeholder="" class="chosen-select" id="q10">
       <option value=""></option>
       <option value="1">1(Strongly Disagree)</option>
@@ -189,70 +189,68 @@
     </div>
   </div>
 
+  <!-- javascript here -->
+  <script type="text/javascript">
 
+    // when user clicks "Submit" validate the form
+    $("#submit").on("click", function () {
+      event.preventDefault()
+
+      function validateForm() {
+        var isValid = true;
+        // return false if user doesnt input name an url
+        $(".form-control").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        // return false if any questions are not answered
+        $(".chosen-select").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      // once the user fills out the required info create an object to hold the users data, array
+      if (validateForm()) {
+        var userData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#10").val(),
+          ]
+        };
+
+        // grab the website URL
+        var currentURL = window.location.origin;
+
+        // AJAX post the data to the friends API
+        $.post(currentURL + "/api/friends", userData, function (data) {
+
+          $("#matchName").text(data.name);
+          $("#matchImg").attr("src", data.photo);
+          $("#resultsModal").modal('toggle');
+        });
+      }
+      else {
+        alert("Fill out all fields before submitting!");
+      }
+      return false;
+    });
+
+  </script>
 </body>
-
-<!-- javascript here -->
-<script type="text/javascript">
-
-  // when user clicks "Submit" validate the form
-  $("#submit").on("click", function (event) {
-    event.preventDefault()
-
-    function validateForm() {
-      var isValid = true;
-      // return false if user doesnt input name an url
-      $(".form-control").each(function () {
-        if ($(this).val() === "") {
-          isValid = false;
-        }
-      });
-
-      // return false if any questions are not answered
-      $(".chosen-select").each(function () {
-        if ($(this).val() === "") {
-          isValid = false;
-        }
-      });
-      return isValid;
-    }
-
-    // once the user fills out the required info create an object to hold the users data, array
-    if (validateForm()) {
-      var userData = {
-        name: $("#name").val(),
-        photo: $("#photo").val(),
-        scores: [
-          $("#q1").val(),
-          $("#q2").val(),
-          $("#q3").val(),
-          $("#q4").val(),
-          $("#q5").val(),
-          $("#q6").val(),
-          $("#q7").val(),
-          $("#q8").val(),
-          $("#q9").val(),
-          $("#10").val(),
-        ]
-      };
-
-      // grab the website URL
-      var currentURL = window.location.origin;
-
-      // AJAX post the data to the friends API
-      $.post(currentURL + "/api/friends", userData, function (data) {
-
-        $("#matchName").text(data.name);
-        $("#matchImg").attr("src", data.photo);
-        $("#resultsModal").modal('toggle');
-      });
-    }
-    else {
-      alert("Fill out all fields before submitting!");
-    }
-    return false;
-  });
-
-</script>
 
 </html>

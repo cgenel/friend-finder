@@ -1,19 +1,26 @@
 {
-  "name": "app",
+  "name": "friend-finder",
   "version": "1.0.0",
-  "description": "",
+  "description": "> This is my first attempt at coding a friend finding full stack application.",
   "main": "server.js",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgenel/friend-finder.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgenel/friend-finder/issues"
+  },
+  "homepage": "https://github.com/cgenel/friend-finder#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
 }

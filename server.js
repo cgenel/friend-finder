@@ -1,25 +1,20 @@
 var express = require("express");
 var app = express();
-var bodyParser = require("body-parser");
+var path = require("path");
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 // body parser makes it easy for back and front end to talk to each other
-app.use(bodyParser.urlencoded({extended: true}));
-
-// parsing custom json types as json
-app.use(bodyParser.json({type: 'application/*+json'}));
-
-// parsing into a buffer
-app.use(bodyParser.raw({type: 'application/vnd.custom-type'}));
-
-// parsing html into a string
-app.use(bodyParser.text({type: 'text/html'}));
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 // require path to Routes
 require("./app/routing/htmlRoutes.js")(app);
 require("./app/routing/apiRoutes.js")(app);
+app.get('*', function(req, res) {
+  res.redirect('/');
+})
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("app is listening on PORT: " + PORT);
 });

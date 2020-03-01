@@ -1,4 +1,4 @@
-var friends = require("../data/friends.js");
+var friends = require("../data/friends");
 
 // API GET Requests
 // Below code handles when users "visit" a page.
@@ -31,9 +31,9 @@ module.exports = function (app) {
       totalDifference = 0;
 
       // loop through all the scores [j]
-      for (var j = 0; j < friends[i].userScores[j]; i++) {
+      for (var j = 0; j < friends[i].scores[j]; j++) {
         // calculate the total difference between the scores and add them together
-        totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].userScores[j]));
+        totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
 
         // calculate the sum between the differences the find the best match
         if (totalDifference <= bestMatch.friendDifference) {
@@ -50,5 +50,6 @@ module.exports = function (app) {
 
     // return json with the bestMatch to the front end
     res.json(bestMatch);
+    console.log(bestMatch);
   });
 };
