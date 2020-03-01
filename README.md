@@ -23,9 +23,7 @@ the friend with the greatest compatibility. There are some 'friends' already sto
 and the answers will be used to determine their best match. Once a match is made a modal will pop up and alert the user of their new friend! 
 
 To-do- list:
-* I am not able to get the api working properly
-* because i am not able to get it working i cannot deploy it  to heroku i have tried
-* need to get the paths working so that I can deploy to heroku and include the heroku link in my portfolio
+* deploy to heroku
 
 ## Status
 Project is: _in progress_
